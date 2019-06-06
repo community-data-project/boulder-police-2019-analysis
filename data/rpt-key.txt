@@ -1,0 +1,62 @@
+Explanation of RPT fields:
+
+RPT1 (Type of stop)
+VEHICLE       6395
+PEDESTRIAN    1791
+
+RPT2 (Stop reason)
+TRAFFIC-SPEEDING                  2808
+MUNICIPAL VIOLATION               2237
+EQUIPMENT VIOLATION                933
+TRAFFIC-RIGHT OF WAY VIOLATION     776
+TRAFFIC-RECKLESS/CARELESS          668
+SUSPICIOUS                         284
+STATE VIOLATION                    222
+TRAFFIC-REDDI OBSERVED PC          120
+WELFARE CHECK                      103
+DISTURBANCE                         35
+TRAFFIC-PARKING VIOLATION           18
+NOISE VIOLATION                     10
+RIGHT OF WAY VIOLATION               3
+SPEEDING                             1
+
+RPT3 (Search conducted)
+\*NO SEARCH    7197
+PERSON         219
+VEHICLE        131
+PROPERTY       109
+DRIVER          95
+PASSENGER       24
+NO SEARCH        5
+
+RPT4 (Search authority)
+INCIDENT TO ARREST    250
+CONSENT               102
+PLAIN VIEW             63
+IMPOUND                54
+PROBABLE CAUSE         38
+
+RPT5 (Contraband found)
+NOTHING SEIZED     1152
+DRUGS                66
+ALCOHOL              55
+OTHER EVIDENCE       20
+STOLEN PROPERTY      15
+WEAPONS               9
+
+RPT6 (Result of stop)
+CITATION         4703
+WARNING          2899
+ARREST            309
+NO ACTION         187
+FIELD CONTACT      97
+DETOX HOLD         33
+M-1 HOLD            3
+
+RPT7 (Arrest outcome?)
+TRAFFIC        3365
+NOT CHARGED    1007
+MUNICIPAL       666
+MISDEMEANOR     137
+WARRANT         106
+FELONY           48

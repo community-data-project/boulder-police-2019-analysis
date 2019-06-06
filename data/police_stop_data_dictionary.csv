@@ -1,0 +1,18 @@
+Dataset,Column Name,Description
+Main,stopdate,Date of the stop
+Main,stoptime,Time (in 24 hour format) when the stop began.
+Main,streetnbr,Street number where stop occurred
+Main,streetdir,Direction of street. Not currently used by Boulder Police Department officers.
+Main,street,Street or intersection where stop occurred
+Main,Min,"Duration of the stop, in minutes. Rounded to 5 minute intervals."
+Main,sex,"Sex of the individual stopped. In most cases, this is collected from the individual's driver's license or identification card. M= male, F= female."
+Main,race,"Race of the individual stopped. Identified by the police officer; see Methods document for more details on this process. A=Asian, B=Black or African American, I=American Indian or Alaskan Native, U= Unknown, W=White."
+Main,ethnic,"Ethnicity of the individual stopped. Identified by the police officer; see Methods document for more details on this process. H=Hispanic, N=Non-Hispanic."
+Main,Year of birth,"Year of birth of the individual stopped. In most cases, this is collected from the individual's driver's license or identification card. Typos may be present due to manual entry of this field."
+Main,enfaction,"Whether the individual is a city of Boulder resident. Y= yes, Boulder resident. N=no, Non-Boulder resident. This may be collected from the individual's driver's license or identification card, or reported by the individual."
+Main,rpmainid,"Unique identifier for the stop. Use this field to merge with ""appid"" in the Results dataset."
+Results,appkey,"Type of Police activity as part of the stop. RPT1=Type of Stop, RPT2=Stop Reason, RPT3=Search Conducted, RPT4=Search Authority, RPT5=Contraband Found, RPT6=Result of Stop."
+Results,appid,"Unique identifier for the stop. Use this field to merge with ""rpmainid"" in the Main dataset."
+Results,itemcode,"Shorthand code for categories of the appkey. For example, if appkey=RPT1, Type of Stop, there are 3 possible shorthand categories for type of stop: DIST, PED, VEH."
+Results,itemdesc,"Longer description for categories of the appkey. For example, if appkey=RPT1, Type of Stop, there are 3 possible description categories for type of stop: Disturance, Pedestrian, Vehicle."
+Results,addtime,"Additional time for each individual action listed in the Results dataset. Refer to ""stoptime"" for the time that the stop began."
