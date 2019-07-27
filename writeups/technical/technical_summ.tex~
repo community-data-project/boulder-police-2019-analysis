@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx,amsmath,amsfonts}
+\usepackage[margin=.5in]{geometry}
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+\newcommand{\bd}{\textbf}
+\newcommand{\ic}{\textit}
+\newcommand{\pr}{\text{P }}
+
+
+\begin{document}
+\section{Introduction}
+\label{sec:intro}
+Modern approaches to assessing bias in police data can be broadly divided into two groups: benchmark analysis and outcome testing \citep{rice_methods_2010}.
+
+Benchmark analysis seeks to compare the demographic breakdown of the stopped or searched population against the demographics of a ``benchmark'' population, defined as all individuals whom the police might intereact with\cite{engel_comparing_2004}. Often, benchmark analyses attempt to exploit some natural problem structure to estimate the benchmarked population. Examples of a benchmark analysis include \cite{grogger_testing_2006}, which looked at the the effect of daylight on traffic stop rates by race (under the assumption that the stopping officer cannot easily determine a driver's race at night before the stop). Similarly, \cite{alpert_toward_2004} use the demographics of the not-at-fault drivers in auto accidents to define a benchmark population of drivers against whom stop breakdowns can be compared.
+
+While benchmark analysis can be 
+
+In this report our goal is to analyze the 2018 Boulder Police Data to answer two questions:
+\begin{enumerate}
+\item Is police bias occurring?
+\item If it is occurring, for which types of stops is it occurring most severely?
+\end{enumerate}
+The second question is the more straightforward of the two, from a statistical perspective.  o do so we will use a rudimentary but tractable ``benchmark'' analysis of police stops. The lottery model lacks rigor however, and is unable to address our first question. Furthermore, the 2018 Discretionary Stop Data is not sufficient to answer Question 1 in a general form. We will therefore use a more sophisticated ``threshold model'' to address the question not for all discretionary stops, but rather for speeding stops. We can also address this question for searches conducted during discretionary stops.
+
+
+\section{Models}
+\label{sec:mods}
+
+\subsection{Lottery Model}
+\label{subsec:lott}
+The lottery model of discretionary stops idealizes the stopping process, assuming that police perform stops entirely randomly. The process is modelled as if each individual of race/ethnicity $r$ independently flips the same coin, and on a ``heads'' is subjected to a discretionary stop. From this it seeks to estimate the probability of a ``heads'' by race, denoted $\rho_r$, and more importantly, where $\rho_r$ varies with $r$.
+
+By definition, the discretionary stop data only includes information on individuals whose outcome was ``heads'', individuals who were stopped. We will therefore rely on the population estimates provided in the accompanying \cite{report} to estimate the total number of ``lottery participants'' per demographic.
+
+Letting $s_r$ denote the number of stops of each race/ethnicity $r$, and $n_r$ denote the total number of such individuals in the BPP. We then have the following:
+\begin{equation}
+  \label{eq:mod1}
+  \pr[s_r = k ] = \choose(n_r,k) \rho_r^k ( 1-\rho_r)^{n_r-k}
+\end{equation}
+
+We place uniform priors on each of the $\rho_r$ to obtain the posterior distribution:
+\begin{equation}
+  \label{eq:post1}
+  \pr[\rho_r | s_r, n_r] \propto \choose(n_r,s_r) \rho_r^{s_r} ( 1-\rho_r)^{n_r-s_r}
+\end{equation}
+
+Eq. (\ref{eq:post1}) could be rewritten as a join posterior over the multidimensional $[\rho_1,...,\rho_N]$, however since each stop is assumed to be independent we can assume the same about the $\rho_r$.
+
+We will use combine two metrics to determine where racial bias may be occurring most severely. First, we calculate the median black-white bias, that is, the posterior median of the distribution of $B_{\text{bw}} = \rho_b - \rho_w$. When $B_{\text{bw}}$ is large and positive, it indicates a large racial disparity in stop occurrances. To determine the extent to which this represents a statistically signifcant bias, rather than due to simple noise, we will use the Bayes Factor (BF).
+
+The BF is a (somewhat crude) method of comparing two models, $M_1$ and $M_2$, each modeling the same dataset $D$. For us, $M_1$ will denote model (\ref{eq:post1}) while $M_2$ denotes a similar model, but where $\rho_b = \rho_w$.  The BF is defined as the ratio:
+\[
+\text{BF} = \frac{\pr[M_1|D]}{\pr[M_2|D]}
+\]
+
+Applying Bayes Theorem to the top and bottom one can show:
+\[
+\text{BF} = \frac{ \pr[D|M_1] }{\pr[D|M_2]}
+\]
+
+Where the $\pr[D|M]$ is the normalizing, ``evidence'' term from the posterior, $\pr[D|M] = \int \pr[D,\theta|M] d \theta = \int \pr[D|\theta,M] \pr[\theta|M] d \theta$.
+
+When the BF is large, it indicates that $M_1$ is significantly more conistent with the data than model $M_2$, and vice versa when it is small.  The BF can often exhibit extreme values, particularly when one model is heavily favored over another. For computational tractability we will thus work on the log scale.
+
+
+\subsection{Treshold Model}
+The lottery model is extremely simplified, and can only determine whether a discrepancy in stop rates exists, not if that discrepancy reflects bias on the part of the stopping officer. A slightly more sophisticated model is the ``threshold model'' \citep{simoiu_problem_2017}. The key distinction between the threshold model and the lottery model is twofold. First, the threshold model looks at the \ic{searches}, rather than discretionary stops. Second, it does not assume that the search process is random. Rather, it assumes that stopping police officers have some threshold of observable evidence, and if a stopped individual is over this threshold then the police will initiate a search.
+
+Mathematically 
+$\rho_r = \frac{1}{n_r} \sum_i \mathbb{1}(\alpha_i > \tau_{r_i}) $
+
+Assume that the BPD have thresholds $\tau_r$ for each race/ethnicity pairing $r$, and that if individual $i$ has $\alpha_i > \tau_{r_i}$ then the BPD will initiate a discretionary stop. The ultimate question of interest here, is whether the $\tau_r$ vary across $r$. However we will not be able to answer this question in general. Instead we will attempt to answer several, more limited questions, which are indicative that the $\tau_r$ do indeed vary.
+
+\cite{}
+
+First, we will asses $\rho_r = P[$
+
+\bibliography{ref.bib}
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

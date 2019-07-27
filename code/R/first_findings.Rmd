@@ -3,9 +3,12 @@ title: Racial Inequities in 2018 Boulder Police Discretionary Stops
 author: Peter Shaffery and Sam Zhang
 date: June 9, 2018
 output:
-  html_document:
-    code_folding: hide
+  pdf_document
 ---	    
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo=FALSE)
+```
 
 ```{r echo=FALSE}
 # setup
